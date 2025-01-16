@@ -1,0 +1,112 @@
+#This is a calculator to add minutes
+
+#Here is an exampleo of how it should run
+#'Hello Welcome to Delgado's Minutes Calculator'
+#'Please enter the amount of minutes that you would like to add:' For example if you want to add 3 different times such as
+#6:50+5:40+4:67 then you would put 3
+#'Would you like to find the average (AVG), or total time (TT)?' Depending on what you want you put either AVG or TT
+#'Here is you answer:' The answer will be displayed
+
+def average():
+    #print("Average")
+    amount=int(input("Please enter the amount of minutes that you would like to add: "))
+    #amount_int=int(amount)
+    #print(amount_int)
+    minutes_list=[]
+    seconds_list=[]
+    for i in range(amount):
+        #print(i)
+        minutes=int(input("Enter the minutes: "))
+        minutes_list.append(minutes)
+        seconds=int(input("Enter the seconds: "))
+        seconds_list.append(seconds)
+        #times.append(minutes)
+        #print(times)
+
+    #print(minutes_list , seconds_list)
+    mins_add=sum(minutes_list)
+    secs_add=sum(seconds_list)
+    #print(mins_add , secs_add)
+    
+    if secs_add >= 60:
+        additional_minutes = secs_add / 60
+        final_minutes = mins_add + additional_minutes
+        remaining_secs = secs_add % 60
+        #print(remaining_seconds)
+    else:
+        final_minutes = mins_add
+        remaining_secs = secs_add
+
+    totalminutes = final_minutes + remaining_secs / 60
+    avg = totalminutes / amount
+    avg_minutes = int(avg) 
+    avg_seconds = int((avg - avg_minutes) * 60) 
+
+    print(f"Here is your average: {avg_minutes} minutes and {avg_seconds} seconds.")
+    
+
+def total():
+    #print("Total Time")
+    amount=int(input("Please enter the amount of minutes that you would like to add: "))
+    #amount_int=int(amount)
+    #print(amount_int)
+    minutes_list=[]
+    seconds_list=[]
+    for i in range(amount):
+        #print(i)
+        minutes=int(input("Enter the minutes: "))
+        minutes_list.append(minutes)
+        seconds=int(input("Enter the seconds: "))
+        seconds_list.append(seconds)
+    #print(minutes_list , seconds_list)
+    mins_add=sum(minutes_list)
+    secs_add=sum(seconds_list)
+    #print(mins_add , secs_add)
+
+    if secs_add >= 60:
+        additional_minutes = secs_add // 60
+        final_minutes = mins_add + additional_minutes
+        remaining_secs = secs_add % 60
+        #print(remaining_seconds)
+    else:
+        final_minutes = mins_add
+        remaining_secs = secs_add
+
+    print(f"Here is your total time: {final_minutes} minutes and {remaining_secs} seconds.")
+
+def try_again():
+    again=input("Would you like to calculate more minutes?(Y/N)").upper()
+    y=True
+    while y:
+        if again == "Y":
+            main()
+        else:
+            print("Thanks for using this calculator! See you later alligator!!")
+            y=False
+
+
+
+def main():
+    print("Hello! Welcome to Delgado's Minutes Calculator")
+    calculation=input("Would you like to find the average (AVG) or the total time (TT)? ").upper()
+    #print(calculation)
+    if calculation == "AVG":
+        average()
+    elif calculation == "TT":
+        total()
+    else:
+        print("Sorry! I was unable to process your request. Please try again")
+        keep_asking=True
+        while keep_asking:
+            calculation=input("Would you like to find the average (AVG) or the total time (TT)? ").upper()
+            #print(calculation)
+            if calculation == "AVG":
+                average()
+                keep_asking=False
+            elif calculation == "TT":
+                total()
+                keep_asking=False
+
+
+if __name__ == "__main__":
+    main()
